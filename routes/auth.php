@@ -1,8 +1,11 @@
 <?php
 
-use App\Http\Controllers\FormDataController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LinkController;
+use App\Http\Controllers\ToolController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\FormDataController;
 use App\Http\Controllers\InstructorsController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\NewPasswordController;
@@ -26,17 +29,21 @@ Route::middleware('auth')->group(function () {
 
     //System initial route
     Route::get('/', function () {
-        return to_route('system_initial_route');
+        return to_route('link.index');
     });
 
     //Application prefix group 
     Route::prefix("tools")->group(function () {
 
         //Authenticated routes
-
+        Route::prefix('link')->group(function () {
+            Route::get('/', [LinkController::class, 'index'])->name('link.index');
+        });
         //Admin middleware group
         Route::middleware('is_admin')->group(function () {
             Route::prefix('admin')->group(function () {
+                Route::resource('employee', EmployeeController::class);
+                Route::resource('tool', ToolController::class);
                 Route::resource('profile', ProfileController::class);
                 Route::get('register', [RegisteredUserController::class, 'create'])
                     ->name('register');
