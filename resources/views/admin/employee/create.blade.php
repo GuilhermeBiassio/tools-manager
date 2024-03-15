@@ -1,5 +1,5 @@
 @extends('components.main')
 
 @section('content')
-    Hello, world!
+    @include('components.admin.employee.form')
 @endsection
