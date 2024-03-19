@@ -12,9 +12,10 @@ return new class extends Migration {
     {
         Schema::create('links', function (Blueprint $table) {
             $table->id();
-            $table->integer('tool');
-            $table->integer('employee');
-            $table->timestamps();
+            $table->integer('id_tool');
+            $table->integer('id_employee');
+            $table->datetime('borrowed')->nullable();
+            $table->datetime('returned')->nullable();
         });
     }
 

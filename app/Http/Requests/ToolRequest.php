@@ -22,7 +22,8 @@ class ToolRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required | string'
+            'name' => 'required | string',
+            'serial_number' => 'nullable | string'
         ];
     }
 }

@@ -11,29 +11,31 @@
                         </button>
                     </a>
                     <div class="overflow-hidden mt-10 d-flex flex-column justify-content-center">
-                        @if (!$users->isEmpty())
+                        @if (!$tools->isEmpty())
                             <h3 class="font-bold text-center">Lista de ferramentas</h3>
                             <table class="table">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="px-6 py-4">Código</th>
                                         <th scope="col" class="px-6 py-4">Nome</th>
+                                        <th scope="col" class="px-6 py-4">Nº Série</th>
                                         <th>#</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($tools as $tool)
                                         <tr scope="row">
-                                            <td>{{ $user->id }}</td>
-                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $tool->id }}</td>
+                                            <td>{{ $tool->name }}</td>
+                                            <td>{{ $tool->serial_number }}</td>
                                             <td>
                                                 <div class="row row-cols-2">
-                                                    <a href="{{ route('tool.edit', $user->id) }}">
+                                                    <a href="{{ route('tool.edit', $tool->id) }}">
                                                         <button type="button" class="btn btn-primary">
                                                             Editar
                                                         </button>
                                                     </a>
-                                                    <form action="{{ route('tool.destroy', $user->id) }}" method="post">
+                                                    <form action="{{ route('tool.destroy', $tool->id) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="button" class="delete-btn btn btn-danger">

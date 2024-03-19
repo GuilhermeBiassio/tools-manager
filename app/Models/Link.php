@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Link extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+    protected $fillable = [
+        'id_tool',
+        'id_employee',
+        'borrowed'
+    ];
 }

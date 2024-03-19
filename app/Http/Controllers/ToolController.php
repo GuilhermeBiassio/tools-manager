@@ -14,7 +14,7 @@ class ToolController extends Controller
     public function index()
     {
         $tools = Tool::orderby('name', 'ASC')->get();
-        return view('admin.tool.index')->with('users', $tools);
+        return view('admin.tool.index')->with('tools', $tools);
     }
 
     /**

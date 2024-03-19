@@ -5,17 +5,9 @@ use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\FormDataController;
-use App\Http\Controllers\InstructorsController;
-use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\Auth\PasswordResetLinkController;
-use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Auth\EmailVerificationPromptController;
-use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
@@ -36,9 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::prefix("tools")->group(function () {
 
         //Authenticated routes
-        Route::prefix('link')->group(function () {
-            Route::get('/', [LinkController::class, 'index'])->name('link.index');
-        });
+        Route::resource('link', LinkController::class);
+
         //Admin middleware group
         Route::middleware('is_admin')->group(function () {
             Route::prefix('admin')->group(function () {

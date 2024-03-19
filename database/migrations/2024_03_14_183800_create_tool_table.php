@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('tools', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('serial_number')->nullable();
             $table->integer('in_use')->default(0);
             $table->timestamps();
         });
