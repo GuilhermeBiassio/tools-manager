@@ -9,6 +9,11 @@
                         <button type="button" class="btn btn-primary" data-te-ripple-init>
                             <span class="font-bold">Adicionar</span>
                         </button>
+                        <a href="{{ route('tool.qr', 'all') }}">
+                            <button type="button" class="btn btn-secondary">
+                                QR Code geral
+                            </button>
+                        </a>
                     </a>
                     <div class="overflow-hidden mt-10 d-flex flex-column justify-content-center">
                         @if (!$tools->isEmpty())
@@ -29,7 +34,7 @@
                                             <td>{{ $tool->name }}</td>
                                             <td>{{ $tool->serial_number }}</td>
                                             <td>
-                                                <div class="row row-cols-2 col-md-auto">
+                                                <div class="row row-cols-3 col-md-auto">
                                                     <a href="{{ route('tool.edit', $tool->id) }}">
                                                         <button type="button" class="btn btn-primary">
                                                             Editar
@@ -42,6 +47,11 @@
                                                             Excluir
                                                         </button>
                                                     </form>
+                                                    <a href="{{ route('tool.qr', $tool->id) }}">
+                                                        <button type="button" class="btn btn-secondary">
+                                                            QR Code
+                                                        </button>
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>

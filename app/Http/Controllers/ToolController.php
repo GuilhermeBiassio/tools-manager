@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ToolRequest;
 use App\Models\Tool;
 use Illuminate\Http\Request;
+use chillerlan\QRCode\QRCode;
+use App\Http\Requests\ToolRequest;
 
 class ToolController extends Controller
 {
@@ -80,5 +81,25 @@ class ToolController extends Controller
     {
         Tool::destroy($id);
         return to_route('tool.index')->with('success.message', 'Ferranenta excluída com sucesso!');
+    }
+
+    public function qrcode(string $id)
+    {
+        $imgs = array();
+        if ($id == 'all') {
+            $tools = Tool::all();
+            foreach ($tools as $tool) {
+                print_r($tool);
+                echo "<\br>";
+                $imgs = [
+                    'qrcode' => (new QRCode())->render($tool->id),
+                    'name' => $tool->name,
+                    'serial_number' => $tool->serial_number
+                ];
+            }
+        } else {
+            $qr = (new QRCode())->render($id);
+        }
+        // dd($imgs);
     }
 }

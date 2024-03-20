@@ -7,6 +7,7 @@ use App\Models\Tool;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Requests\LinkRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class LinkController extends Controller
 {
@@ -20,7 +21,7 @@ class LinkController extends Controller
             ->join('employees', 'links.id_employee', '=', 'employees.id')
             ->join('tools', 'links.id_tool', '=', 'tools.id')
             ->orderBy('borrowed', 'DESC')
-            ->paginate(15);
+            ->paginate(10);
         return view('link.index')->with('tools', $data);
     }
 
@@ -46,7 +47,7 @@ class LinkController extends Controller
         $update = Tool::find($request->tool);
         $update->in_use = 1;
         $update->update();
-        return to_route('link.index')->with('success.message', 'Vínculo criado com sucesso!');
+        return to_route('link.show', $request->employee)->with('success.message', 'Vínculo criado com sucesso!');
     }
 
     /**
@@ -56,8 +57,9 @@ class LinkController extends Controller
     {
         $name = Employee::find($id);
         $data = Link::where('id_employee', '=', $id)
+            ->select('links.*', 'tools.name')
             ->join('tools', 'tools.id', '=', 'links.id_tool')
-            ->orderBy('borrowed', 'DESC')
+            ->orderBy('returned', 'ASC')
             ->paginate(10);
         return view('link.show')->with([
             'name' => $name,
@@ -85,7 +87,7 @@ class LinkController extends Controller
         $link->returned = date('Y-m-d H:i:s');
         $link->update();
 
-        return to_route('link.index')->with('success.message', "$tool->name devolvido(a)");
+        return Redirect::back()->with('success.message', "$tool->name devolvido(a)");
     }
 
     /**

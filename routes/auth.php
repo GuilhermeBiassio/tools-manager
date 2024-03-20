@@ -26,10 +26,9 @@ Route::middleware('auth')->group(function () {
 
     //Application prefix group 
     Route::prefix("tools")->group(function () {
-
+        Route::get('tool/qr/{id}', [ToolController::class, 'qrcode'])->name('tool.qr');
         //Authenticated routes
         Route::resource('link', LinkController::class);
-
         //Admin middleware group
         Route::middleware('is_admin')->group(function () {
             Route::prefix('admin')->group(function () {

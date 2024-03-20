@@ -30,7 +30,11 @@
                                             <td>{{ $tool->id }}</td>
                                             <td>{{ $tool->tool_name }}</td>
                                             <td>{{ $tool->serial_number }}</td>
-                                            <td>{{ $tool->employee_name }}</td>
+                                            <td>
+                                                <a href="{{ route('link.show', $tool->id_employee) }}">
+                                                    {{ $tool->employee_name }}
+                                                </a>
+                                            </td>
                                             <td>{{ date('d/m/Y H:i', strtotime($tool->borrowed)) }}</td>
                                             <td>
                                                 <div class="row row-cols-2">
