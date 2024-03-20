@@ -29,7 +29,7 @@
                                             <td>{{ $tool->name }}</td>
                                             <td>{{ $tool->serial_number }}</td>
                                             <td>
-                                                <div class="row row-cols-2">
+                                                <div class="row row-cols-2 col-md-auto">
                                                     <a href="{{ route('tool.edit', $tool->id) }}">
                                                         <button type="button" class="btn btn-primary">
                                                             Editar

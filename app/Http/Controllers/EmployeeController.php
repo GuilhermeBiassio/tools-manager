@@ -30,7 +30,11 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request)
     {
-        Employee::create($request->all());
+        $data = [
+            'name' => mb_strtoupper($request->name),
+            'id' => $request->id
+        ];
+        Employee::create($data);
         return to_route('employee.index')->with('success.message', 'Dados cadastrados com sucesso!');
     }
 
@@ -59,8 +63,12 @@ class EmployeeController extends Controller
      */
     public function update(EmployeeRequest $request, string $id)
     {
+        $update = [
+            'name' => mb_strtoupper($request->name),
+            'id' => $request->id
+        ];
         $data = Employee::find($id);
-        $data->fill($request->all());
+        $data->fill($update);
         $data->update();
         return to_route('employee.index')->with('success.message', 'Dados atualizados!');
     }

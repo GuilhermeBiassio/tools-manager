@@ -20,7 +20,7 @@ class LinkController extends Controller
             ->join('employees', 'links.id_employee', '=', 'employees.id')
             ->join('tools', 'links.id_tool', '=', 'tools.id')
             ->orderBy('borrowed', 'DESC')
-            ->get();
+            ->paginate(15);
         return view('link.index')->with('tools', $data);
     }
 
@@ -40,7 +40,7 @@ class LinkController extends Controller
         $data = [
             'id_tool' => $request->tool,
             'id_employee' => $request->employee,
-            'borrowed' => date('Y-m-d H:I:s')
+            'borrowed' => date('Y-m-d H:i:s')
         ];
         Link::create($data);
         $update = Tool::find($request->tool);
@@ -54,7 +54,15 @@ class LinkController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $name = Employee::find($id);
+        $data = Link::where('id_employee', '=', $id)
+            ->join('tools', 'tools.id', '=', 'links.id_tool')
+            ->orderBy('borrowed', 'DESC')
+            ->paginate(10);
+        return view('link.show')->with([
+            'name' => $name,
+            'datas' => $data
+        ]);
     }
 
     /**
@@ -70,7 +78,14 @@ class LinkController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $link = Link::find($id);
+        $tool = Tool::find($link->id_tool);
+        $tool->in_use = 0;
+        $tool->update();
+        $link->returned = date('Y-m-d H:i:s');
+        $link->update();
+
+        return to_route('link.index')->with('success.message', "$tool->name devolvido(a)");
     }
 
     /**

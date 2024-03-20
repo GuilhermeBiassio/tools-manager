@@ -25,7 +25,7 @@
                                     @foreach ($users as $user)
                                         <tr scope="row">
                                             <td>{{ $user->id }}</td>
-                                            <td>{{ $user->name }}</td>
+                                            <td><a href="{{ route('link.show', $user->id) }}">{{ $user->name }}</a></td>
                                             <td>
                                                 <div class="row row-cols-2">
                                                     <a href="{{ route('employee.edit', $user->id) }}">

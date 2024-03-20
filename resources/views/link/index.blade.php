@@ -37,7 +37,7 @@
                                                     <form action="{{ route('link.update', $tool->id) }}" method="post">
                                                         @csrf
                                                         @method('PUT')
-                                                        <button type="button" class="delete-btn btn btn-info">
+                                                        <button type="button" class="change-btn btn btn-info">
                                                             Devolver
                                                         </button>
                                                     </form>

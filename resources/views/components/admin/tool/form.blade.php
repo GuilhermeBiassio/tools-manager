@@ -19,10 +19,10 @@
 
         <!-- Serial number -->
         <div class="mb-3 col-md-6">
-            <label for="name" class="form-label">
+            <label for="number" class="form-label">
                 Nº de série
             </label>
-            <input id="name" class="form-control" type="text" name="serial_number"
+            <input id="number" class="form-control" type="text" name="serial_number"
                 @if ($errors->any()) value="{{ old('serial_number') }}" @endif
                 @if (isset($tool)) value="{{ $tool->serial_number }}" @endif autofocus
                 autocomplete="name" />

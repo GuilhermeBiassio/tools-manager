@@ -41,6 +41,9 @@
                         <a class="btn btn-primary" href="{{ route('link.create') }}">Cadastrar empréstimo</a>
                     </li>
                     <li class="nav-item d-grid gap-2 mt-2">
+                        <a class="btn btn-primary" href="{{ route('link.index') }}">Ferramentas em uso</a>
+                    </li>
+                    <li class="nav-item d-grid gap-2 mt-2">
                         <a class="btn btn-primary" href="{{ route('employee.index') }}">Listar funcionários</a>
                     </li>
                     <li class="nav-item d-grid gap-2 mt-2">

@@ -30,7 +30,11 @@ class ToolController extends Controller
      */
     public function store(ToolRequest $request)
     {
-        Tool::create($request->all());
+        $data = [
+            'name' => mb_strtoupper($request->name),
+            'serial_number' => $request->serial_number
+        ];
+        Tool::create($data);
         return to_route('tool.index')->with('success.message', 'Dados cadastrados com sucesso!');
     }
 
@@ -59,8 +63,12 @@ class ToolController extends Controller
      */
     public function update(ToolRequest $request, string $id)
     {
+        $update = [
+            'name' => mb_strtoupper($request->name),
+            'serial_number' => $request->serial_number
+        ];
         $data = Tool::find($id);
-        $data->fill($request->all());
+        $data->fill($update);
         $data->update();
         return to_route('tool.index')->with('success.message', 'Dados atualizados!');
     }
