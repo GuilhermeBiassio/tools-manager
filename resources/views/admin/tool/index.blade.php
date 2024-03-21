@@ -9,7 +9,7 @@
                         <button type="button" class="btn btn-primary" data-te-ripple-init>
                             <span class="font-bold">Adicionar</span>
                         </button>
-                        <a href="{{ route('tool.qr', 'all') }}">
+                        <a href="{{ route('tool.qr', 'all') }}" target="_blank">
                             <button type="button" class="btn btn-secondary">
                                 QR Code geral
                             </button>
@@ -47,7 +47,7 @@
                                                             Excluir
                                                         </button>
                                                     </form>
-                                                    <a href="{{ route('tool.qr', $tool->id) }}">
+                                                    <a href="{{ route('tool.qr', $tool->id) }}" target="_blank">
                                                         <button type="button" class="btn btn-secondary">
                                                             QR Code
                                                         </button>

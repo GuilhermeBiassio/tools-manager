@@ -83,23 +83,30 @@ class ToolController extends Controller
         return to_route('tool.index')->with('success.message', 'Ferranenta excluída com sucesso!');
     }
 
+    public function qrGenerator($id, $name, $serial)
+    {
+        return [
+            'qrcode' => (new QRCode())->render($id),
+            'name' => $name,
+            'serial_number' => $serial
+        ];
+        ;
+    }
+
     public function qrcode(string $id)
     {
-        $imgs = array();
+        $codes = array();
         if ($id == 'all') {
             $tools = Tool::all();
             foreach ($tools as $tool) {
-                print_r($tool);
-                echo "<\br>";
-                $imgs = [
-                    'qrcode' => (new QRCode())->render($tool->id),
-                    'name' => $tool->name,
-                    'serial_number' => $tool->serial_number
-                ];
+                $codes[] = $this->qrGenerator($tool->id, $tool->name, $tool->serial_number);
             }
         } else {
-            $qr = (new QRCode())->render($id);
+            $tool = Tool::find($id);
+            $codes[] = $this->qrGenerator($id, $tool->name, $tool->serial_number);
         }
         // dd($imgs);
+
+        return view('admin.tool.qr')->with('codes', $codes);
     }
 }
