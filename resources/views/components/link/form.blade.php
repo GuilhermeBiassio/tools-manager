@@ -1,12 +1,12 @@
 <div class="container">
-    <form method="POST" action="{{ $action }}">
+    <form method="POST" class="mb-3" action="{{ $action }}">
         @csrf
 
         @if (isset($links))
             @method('PUT')
         @endif
 
-        <button id="qrBtn" type="button" class="btn btn-primary">Escanear QR Code</button>
+        <button id="qrBtn" type="button" class="mt-3 mb-3 btn btn-primary">Escanear QR Code</button>
 
         <div id="qr-scan" class="d-none">
             <h1>QR scan</h1>
@@ -18,7 +18,7 @@
 
         <div class="mb-3 input-group-lg">
             <label for="tools" class="form-label">Ferramenta</label>
-            <select class=" form-select" id="tools" name="tool" aria-label="Default select example">
+            <select class="select form-select" id="tools" name="tool" aria-label="Default select example">
                 <option selected disabled value="">Selecione</option>
                 @if (isset($tools))
                     @foreach ($tools as $tool)

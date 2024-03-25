@@ -12,7 +12,7 @@
                     </a>
                     <div class="overflow-hidden mt-10 d-flex flex-column justify-content-center">
                         @if (!$datas->isEmpty() && isset($name))
-                            <h3 class="font-bold text-center">Ferramentas usadas por {{ $name->name }}</h3>
+                            <h5 class="font-bold text-center">Ferramentas usadas por {{ $name->name }}</h5>
                             <table class="table">
                                 <thead>
                                     <tr>

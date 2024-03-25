@@ -2,15 +2,20 @@
 <script>
     $(document).ready(function() {
         var qrBtn = document.querySelector('#qrBtn');
+        var cont = 0;
 
-        $('.select').select2({
-            theme: 'bootstrap4',
-            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' :
-                'style',
-            placeholder: $(this).data('placeholder'),
-            allowClear: Boolean($(this).data('allow-clear')),
-            closeOnSelect: !$(this).attr('multiple'),
-        });
+        function selectRender() {
+            $('.select').select2({
+                theme: 'bootstrap4',
+                width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ?
+                    '100%' : 'style',
+                placeholder: $(this).data('placeholder'),
+                allowClear: Boolean($(this).data('allow-clear')),
+                closeOnSelect: !$(this).attr('multiple'),
+            });
+        }
+
+        selectRender();
 
         qrBtn.addEventListener('click', (event) => {
             document.querySelector('#qr-scan').className = 'd-block';
@@ -23,8 +28,14 @@
             function onScanSucces(decodeText, decodeResult) {
                 for (var i = 0; i < tools.options.length; i++) {
                     if (tools.options[i].value == decodeText) {
-                        tools.value = decodeText;
+                        tools.options[i].selected = 'selected';
+                        ++cont;
                     }
+                }
+                if (cont < 0) {
+                    alert('Ferramenta não encontrada!');
+                } else {
+                    selectRender();
                 }
             }
 

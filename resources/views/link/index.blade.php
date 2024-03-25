@@ -5,7 +5,7 @@
         <div class="flex flex-col w-[60%]">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                    <a href="{{ route('link.create') }}" class="self-start">
+                    <a href="{{ route('link.create', ) }}" class="self-start">
                         <button type="button" class="btn btn-primary" data-te-ripple-init>
                             <span class="font-bold">Adicionar</span>
                         </button>
