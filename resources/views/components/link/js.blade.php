@@ -34,6 +34,7 @@
                 }
                 if (cont > 0) {
                     selectRender();
+                    cont = 0;
                 } else {
                     alert('Ferramenta não encontrada!');
                 }
