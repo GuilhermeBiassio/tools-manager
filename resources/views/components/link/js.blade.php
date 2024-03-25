@@ -32,10 +32,10 @@
                         ++cont;
                     }
                 }
-                if (cont < 0) {
-                    alert('Ferramenta não encontrada!');
-                } else {
+                if (cont > 0) {
                     selectRender();
+                } else {
+                    alert('Ferramenta não encontrada!');
                 }
             }
 
