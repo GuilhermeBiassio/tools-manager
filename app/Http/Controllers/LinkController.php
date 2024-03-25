@@ -30,7 +30,9 @@ class LinkController extends Controller
      */
     public function create()
     {
-        return view('link.create')->with(array_merge($this->lists(), ['action' => route('link.store')]));
+        return view('link.create')->with(array_merge($this->lists(
+            Tool::where('in_use', '=', 0)
+        ), ['action' => route('link.store')]));
     }
 
     /**
@@ -98,9 +100,9 @@ class LinkController extends Controller
         //
     }
 
-    private function lists()
+    private function lists($query)
     {
-        $tools = Tool::where('in_use', '=', 0)
+        $tools = ($query)
             ->orderBy('name', 'ASC')
             ->get();
         $employees = Employee::orderBy('name', 'ASC')->get();
@@ -108,5 +110,15 @@ class LinkController extends Controller
             'tools' => $tools,
             'employees' => $employees
         ];
+    }
+
+    public function searchForm()
+    {
+        return view('link.search')->with(
+            $this->lists(
+                Tool::where('in_use', '=', 0)
+                    ->orWhere('in_use', '=', 1)
+            )
+        );
     }
 }

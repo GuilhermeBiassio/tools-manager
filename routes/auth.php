@@ -28,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::prefix("tools")->group(function () {
         Route::get('tool/qr/{id}', [ToolController::class, 'qrcode'])->name('tool.qr');
         //Authenticated routes
+        Route::get('link/search', [LinkController::class, 'searchForm'])->name('link.search.form');
+        Route::post('link/search', [LinkController::class, 'search'])->name('link.search');
         Route::resource('link', LinkController::class);
         //Admin middleware group
         Route::middleware('is_admin')->group(function () {
