@@ -39,15 +39,18 @@
                                                 </td>
                                                 <td>{{ date('d/m/Y H:i', strtotime($tool->borrowed)) }}</td>
                                                 <td>
-                                                    <div class="row row-cols-2">
-                                                        <form action="{{ route('link.update', $tool->id) }}" method="post">
-                                                            @csrf
-                                                            @method('PUT')
-                                                            <button type="button" class="change-btn btn btn-info">
-                                                                Devolver
-                                                            </button>
-                                                        </form>
-                                                    </div>
+                                                    @if ($tool->returned == null)
+                                                        <div class="row row-cols-2">
+                                                            <form action="{{ route('link.update', $tool->id) }}"
+                                                                method="post">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <button type="button" class="change-btn btn btn-info">
+                                                                    Devolver
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

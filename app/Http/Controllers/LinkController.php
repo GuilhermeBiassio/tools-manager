@@ -121,4 +121,28 @@ class LinkController extends Controller
             )
         );
     }
+
+    public function search(Request $request)
+    {
+        $data = Link::where('borrowed', '>=', $request->start)
+            ->where('borrowed', '<', date('Y-m-d', strtotime("+1 days", strtotime($request->end))))
+            ->when(
+                request('employee') != NULL,
+                function ($q) {
+                    return $q->where('id_employee', '=', request('employee'));
+                }
+            )
+            ->when(
+                request('tool') != NULL,
+                function ($q) {
+                    return $q->where('id_tool', '=', request('tool'));
+                }
+            )
+            ->select('links.*', 'employees.name as employee_name', 'tools.name as tool_name', 'tools.serial_number')
+            ->join('employees', 'links.id_employee', '=', 'employees.id')
+            ->join('tools', 'links.id_tool', '=', 'tools.id')
+            ->orderBy('borrowed', 'DESC')
+            ->paginate(10);
+        return view('link.index')->with('tools', $data);
+    }
 }

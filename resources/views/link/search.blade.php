@@ -17,8 +17,8 @@
 
             <div class="mb-3 input-group-lg">
                 <label for="tools" class="form-label">Ferramenta</label>
-                <select class="select form-select" id="tools" name="tool" aria-label="Default select example">
-                    <option selected disabled value="">Selecione</option>
+                <select class=" form-select" id="tools" name="tool" aria-label="Default select example">
+                    <option value="">Selecione</option>
                     @if (isset($tools))
                         @foreach ($tools as $tool)
                             <option value="{{ $tool['id'] }}" @if ($errors->any() && old('tool') == $tool['id']) selected @endif>
@@ -30,8 +30,8 @@
 
             <div class="mb-3 input-group-lg">
                 <label for="employee" class="form-label">Funcionário</label>
-                <select class="select form-select" name="employee" aria-label="Default select example">
-                    <option selected disabled value="">Selecione</option>
+                <select class=" form-select" name="employee" aria-label="Default select example">
+                    <option value="">Selecione</option>
                     @if (isset($employees))
                         @foreach ($employees as $employee)
                             <option value="{{ $employee['id'] }}" @if ($errors->any() && old('employee') == $employee['id']) selected @endif>
