@@ -1,5 +1,5 @@
 <x-main>
-    <x-form action="route('login')" title="Login" btnTitle="Entrar">
+    <x-form action="{{ route('login') }}" title="Login" btnTitle="Entrar">
         <!-- Email Address -->
         <x-input name="login" label="Usuário / E-mail" type="text" />
 
@@ -15,4 +15,5 @@
             </label>
         </div>
     </x-form>
+    <x-slot name="js"></x-slot>
 </x-main>

@@ -3,7 +3,7 @@
         <div class="flex flex-col w-[60%]">
             <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                    <x-buttons.add-btn route="route('link.create')" name="Adicionar" />
+                    <x-buttons.add-btn :route="route('link.create')" name="Adicionar" />
                     <div class="overflow-hidden mt-10 d-flex flex-column justify-content-center">
                         @if (!$tools->isEmpty())
                             <h3 class="font-bold text-center">Ferramentas em uso</h3>
@@ -50,4 +50,5 @@
             </div>
         </div>
     </div>
+    <x-slot name="js"></x-slot>
 </x-main>

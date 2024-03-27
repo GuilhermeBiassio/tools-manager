@@ -1,25 +1,22 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\Buttons;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Form extends Component
+class MenuBtn extends Component
 {
-    public $action;
+    public $route;
     public $title;
-    public $btnTitle;
     /**
      * Create a new component instance.
      */
-
-    public function __construct($action, $title, $btnTitle)
+    public function __construct($route, $title)
     {
-        $this->action = $action;
+        $this->route = $route;
         $this->title = $title;
-        $this->btnTitle = $btnTitle;
     }
 
     /**
@@ -27,6 +24,6 @@ class Form extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form');
+        return view('components.buttons.menu-btn');
     }
 }

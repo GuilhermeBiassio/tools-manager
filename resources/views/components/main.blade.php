@@ -37,25 +37,13 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="nav flex-column">
-                    <li class="nav-item d-grid gap-2 mt-2">
-                        <a class="btn btn-primary" href="{{ route('link.create') }}">Cadastrar empréstimo</a>
-                    </li>
-                    <li class="nav-item d-grid gap-2 mt-2">
-                        <a class="btn btn-primary" href="{{ route('link.index') }}">Ferramentas em uso</a>
-                    </li>
-                    <li class="nav-item d-grid gap-2 mt-2">
-                        <a class="btn btn-primary" href="{{ route('link.search') }}">Buscar</a>
-                    </li>
-                    <li class="nav-item d-grid gap-2 mt-2">
-                        <a class="btn btn-primary" href="{{ route('employee.index') }}">Listar funcionários</a>
-                    </li>
-                    <li class="nav-item d-grid gap-2 mt-2">
-                        <a class="btn btn-primary" href="{{ route('tool.index') }}">Listar ferramentas</a>
-                    </li>
+                    <x-buttons.menu-btn :route="route('link.create')" title="Cadastrar empréstimo" />
+                    <x-buttons.menu-btn :route="route('link.index')" title="Ferramentas em uso" />
+                    <x-buttons.menu-btn :route="route('link.search')" title="Buscar" />
+                    <x-buttons.menu-btn :route="route('employee.index')" title="Listas funcionário" />
+                    <x-buttons.menu-btn :route="route('tool.index')" title="Listar ferramentas" />
                     @if (Auth::user()->is_admin == 1)
-                        <li class="nav-item d-grid gap-2 mt-2">
-                            <a class="btn btn-primary" href="{{ route('profile.index') }}">Listar Usuários</a>
-                        </li>
+                        <x-buttons.menu-btn :route="route('profile.index')" title="Listar usuários" />
                     @endif
                 </ul>
             </div>
@@ -78,7 +66,7 @@
     <script src="/assets/js/js.js"></script>
     <script src="/assets/js/jquery-3.7.1.min.js"></script>
     <script src="/assets/js/select2.min.js"></script>
-
+    {{ $js }}
 </body>
 
 </html>

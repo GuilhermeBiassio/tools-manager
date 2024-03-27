@@ -6,20 +6,17 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Form extends Component
+class Select extends Component
 {
-    public $action;
-    public $title;
-    public $btnTitle;
+    public $name;
+    public $label;
     /**
      * Create a new component instance.
      */
-
-    public function __construct($action, $title, $btnTitle)
+    public function __construct($name, $label)
     {
-        $this->action = $action;
-        $this->title = $title;
-        $this->btnTitle = $btnTitle;
+        $this->name = $name;
+        $this->label = $label;
     }
 
     /**
@@ -27,6 +24,6 @@ class Form extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form');
+        return view('components.select');
     }
 }
