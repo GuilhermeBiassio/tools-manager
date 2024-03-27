@@ -3,6 +3,7 @@
         {{ $label }}
     </label>
     <input id="{{ $name }}" class="form-control" type="{{ $type }}" name="{{ $name }}"
-        @if ($errors->any()) value="{{ old("$name") }}" @endif required autofocus
+        @if ($errors->any()) value="{{ old("$name") }}" @endif
+        @if (isset($value)) value="{{ $value }}" @endif required autofocus
         autocomplete="username" />
 </div>

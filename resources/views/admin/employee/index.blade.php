@@ -40,4 +40,5 @@
             <h4>Nenhum registro...</h4>
         @endif
     </div>
+    <x-slot name="js"></x-slot>
 </x-main>

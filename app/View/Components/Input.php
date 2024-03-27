@@ -11,14 +11,17 @@ class Input extends Component
     public $name;
     public $label;
     public $type;
+
+    public $value;
     /**
      * Create a new component instance.
      */
-    public function __construct($name, $label, $type)
+    public function __construct($name, $label, $type, $value)
     {
         $this->name = $name;
         $this->label = $label;
         $this->type = $type;
+        $this->value = $value;
     }
 
     /**
