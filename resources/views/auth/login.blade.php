@@ -1,5 +1,4 @@
-@extends('components.main')
-@section('content')
+<x-main>
     <x-form action="route('login')" title="Login" btnTitle="Entrar">
         <!-- Email Address -->
         <x-input name="login" label="Usuário / E-mail" type="text" />
@@ -16,4 +15,4 @@
             </label>
         </div>
     </x-form>
-@endsection
+</x-main>

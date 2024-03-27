@@ -73,12 +73,12 @@
     @endif
     <div class="container">
         @include('components.messages')
-        @yield('content')
+        {{ $slot }}
     </div>
     <script src="/assets/js/js.js"></script>
     <script src="/assets/js/jquery-3.7.1.min.js"></script>
     <script src="/assets/js/select2.min.js"></script>
-    @yield('js')
+
 </body>
 
 </html>
