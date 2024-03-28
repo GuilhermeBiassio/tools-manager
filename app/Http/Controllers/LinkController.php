@@ -30,9 +30,11 @@ class LinkController extends Controller
      */
     public function create()
     {
-        return view('link.create')->with(array_merge($this->lists(
-            Tool::where('in_use', '=', 0)
-        ), ['action' => route('link.store')]));
+        return view('link.create')->with(array_merge($this->lists([
+            'tool' => Tool::where('in_use', '=', 0)
+                ->where('active', '=', '1'),
+            'employee' => Employee::where('active', '=', 1)
+        ]), ['action' => route('link.store')]));
     }
 
     /**
@@ -102,10 +104,12 @@ class LinkController extends Controller
 
     private function lists($query)
     {
-        $tools = ($query)
+        $tools = ($query['tool'])
             ->orderBy('name', 'ASC')
             ->get();
-        $employees = Employee::orderBy('name', 'ASC')->get();
+        $employees = ($query['employee'])
+            ->orderBy('name', 'ASC')
+            ->get();
         return [
             'tools' => $tools,
             'employees' => $employees
@@ -115,10 +119,12 @@ class LinkController extends Controller
     public function searchForm()
     {
         return view('link.search')->with(
-            $this->lists(
-                Tool::where('in_use', '=', 0)
-                    ->orWhere('in_use', '=', 1)
-            )
+            $this->lists([
+                'tool' => Tool::where('in_use', '=', 0)
+                    ->orWhere('in_use', '=', 1),
+                'employee' => Employee::where('active', '=', 1)
+                    ->orWhere('active', '=', 0)
+            ])
         );
     }
 

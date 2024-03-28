@@ -9,7 +9,7 @@
         <div id="qr-scan" class="d-none">
             <h3>QR scan</h3>
             <div class="d-flex justify-content-center">
-                <div id="qr-reader" style="width:500px;"></div>
+                <div id="qr-reader" style="width:100%;"></div>
             </div>
         </div>
 

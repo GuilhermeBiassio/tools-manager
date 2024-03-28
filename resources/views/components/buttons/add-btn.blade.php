@@ -1,4 +1,4 @@
-<div class="m-3">
+<div class="ms-3">
     <a {{ $attributes->merge([
         'href' => $route,
         'class' => 'self-start',

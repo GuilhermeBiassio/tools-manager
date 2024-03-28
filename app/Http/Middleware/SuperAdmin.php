@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsAdmin
+class SuperAdmin
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,9 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user() && (Auth::user()->is_admin == 1 || Auth::user()->is_admin == 2)) {
+        if (Auth::user() && Auth::user()->is_admin == 2) {
             return $next($request);
         }
-        return Redirect::back()->with('error.message', 'Você não tem acesso de Administrador!');
+        return Redirect::back()->with('error.message', 'Você não tem acesso de Super Administrador!');
     }
 }

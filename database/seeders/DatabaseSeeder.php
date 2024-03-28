@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@citral.tur.br',
             'password' => Hash::make('@dm!n'),
-            'is_admin' => 1
+            'is_admin' => 2
         ]);
     }
 }

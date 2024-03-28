@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EmployeeRequest;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use App\Http\Requests\EmployeeRequest;
+use Illuminate\Support\Facades\Redirect;
 
 class EmployeeController extends Controller
 {
@@ -30,6 +31,14 @@ class EmployeeController extends Controller
      */
     public function store(EmployeeRequest $request)
     {
+        $request->validate(
+            [
+                'id' => 'unique:App\Models\Employee,id',
+            ],
+            [
+                'id.unique' => 'O código já existe na base.'
+            ]
+        );
         $data = [
             'name' => mb_strtoupper($request->name),
             'id' => $request->id
@@ -78,7 +87,19 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        Employee::destroy($id);
+        $data = Employee::find($id);
+        $data->active = 0;
+        $data->update();
+
         return to_route('employee.index')->with('success.message', 'Funcionário excluído com sucesso!');
+    }
+
+    public function enable($id)
+    {
+        $data = Employee::find($id);
+        $data->active = 1;
+        $data->update();
+
+        return Redirect::back()->with('success.message', 'Funcionário ativado.');
     }
 }

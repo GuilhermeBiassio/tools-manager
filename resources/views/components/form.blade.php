@@ -1,4 +1,4 @@
-<div class="container border p-4 mt-4 mb-4 col-12 col-lg-8 rounded">
+<div class="container border p-4 mt-4 mb-4 col-12 col-lg-6 rounded">
     <form method="POST" action="{{ $action }}">
         <div class="mb-3">
             <h3 class="text-center">{{ $title }}</h3>

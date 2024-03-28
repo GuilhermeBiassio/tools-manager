@@ -1,19 +1,20 @@
 @php
     if (isset($user)) {
-        $method = 'PUT';
         $id = $user->id;
         $name = $user->name;
-        $operation = 'Alterar';
+    } elseif ($errors->any()) {
+        $id = old('id');
+        $name = old('name');
     } else {
-        $method = 'POST';
         $id = '';
         $name = '';
-        $operation = 'Cadastrar';
     }
 @endphp
 <x-main>
-    <x-form action="{{ $action }}" title="{{ $operation }} funcionário" btnTitle="Enviar">
-        @method($method)
+    <x-form action="{{ $action }}" title="Cadastro de funcionário" btnTitle="Enviar">
+        @if (isset($user))
+            @method('PUT')
+        @endif
         <!-- ID -->
         <x-input name="id" label="Código funcionário" type="text" value="{{ $id }}" />
         <!-- Name -->

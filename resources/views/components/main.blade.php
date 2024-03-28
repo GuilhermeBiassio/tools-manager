@@ -40,9 +40,11 @@
                     <x-buttons.menu-btn :route="route('link.create')" title="Cadastrar empréstimo" />
                     <x-buttons.menu-btn :route="route('link.index')" title="Ferramentas em uso" />
                     <x-buttons.menu-btn :route="route('link.search')" title="Buscar" />
-                    <x-buttons.menu-btn :route="route('employee.index')" title="Listas funcionário" />
-                    <x-buttons.menu-btn :route="route('tool.index')" title="Listar ferramentas" />
-                    @if (Auth::user()->is_admin == 1)
+                    @if (Auth::user()->is_admin == 1 || Auth::user()->is_admin == 2)
+                        <x-buttons.menu-btn :route="route('employee.index')" title="Listar funcionários" />
+                        <x-buttons.menu-btn :route="route('tool.index')" title="Listar ferramentas" />
+                    @endif
+                    @if (Auth::user()->is_admin == 2)
                         <x-buttons.menu-btn :route="route('profile.index')" title="Listar usuários" />
                     @endif
                 </ul>
@@ -59,7 +61,7 @@
             </div>
         </div>
     @endif
-    <div class="container">
+    <div class="container py-3">
         @include('components.messages')
         {{ $slot }}
     </div>

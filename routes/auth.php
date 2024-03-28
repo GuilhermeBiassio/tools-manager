@@ -5,7 +5,6 @@ use App\Http\Controllers\LinkController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
@@ -30,20 +29,19 @@ Route::middleware('auth')->group(function () {
         //Authenticated routes
         Route::get('link/search', [LinkController::class, 'searchForm'])->name('link.search.form');
         Route::post('link/search', [LinkController::class, 'search'])->name('link.search');
-        Route::resource('link', LinkController::class);
+        Route::resource('link', LinkController::class)->except(['edit', 'destroy']);
         //Admin middleware group
         Route::middleware('is_admin')->group(function () {
             Route::prefix('admin')->group(function () {
-                Route::resource('employee', EmployeeController::class);
-                Route::resource('tool', ToolController::class);
-                Route::resource('profile', ProfileController::class);
-                Route::get('register', [RegisteredUserController::class, 'create'])
-                    ->name('register');
-                Route::post('register', [RegisteredUserController::class, 'store']);
-                Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-                    ->name('password.reset');
-                Route::post('reset-password', [NewPasswordController::class, 'store'])
-                    ->name('password.store');
+                Route::middleware('super_admin')->group(function () {
+                    Route::put('employee/enable/{id}', [EmployeeController::class, 'enable'])->name('employee.enable');
+                    Route::resource('profile', ProfileController::class);
+                    Route::get('register', [RegisteredUserController::class, 'create'])
+                        ->name('register');
+                    Route::post('register', [RegisteredUserController::class, 'store']);
+                });
+                Route::resource('employee', EmployeeController::class)->except(['show']);
+                Route::resource('tool', ToolController::class)->except(['show']);
             });
         });
     });

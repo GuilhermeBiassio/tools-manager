@@ -25,6 +25,7 @@
         <x-select name="is_admin" label="Tipo usuário">
             <option value="0" @if ($is_admin == 0) selected @endif>Usuário</option>
             <option value="1" @if ($is_admin == 1) selected @endif>Admin</option>
+            <option value="2" @if ($is_admin == 2) selected @endif>Super Admin</option>
         </x-select>
         <x-input label="Nome" name="name" value="{{ $name }}" type="text" />
         <x-input label="E-mail" name="email" value="{{ $email }}" type="email" />

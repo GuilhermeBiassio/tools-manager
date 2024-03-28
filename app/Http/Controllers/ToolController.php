@@ -14,7 +14,8 @@ class ToolController extends Controller
      */
     public function index()
     {
-        $tools = Tool::orderby('name', 'ASC')->get();
+        $tools = Tool::where('active', '=', '1')
+        ->orderby('name', 'ASC')->get();
         return view('admin.tool.index')->with('tools', $tools);
     }
 
@@ -79,7 +80,10 @@ class ToolController extends Controller
      */
     public function destroy(string $id)
     {
-        Tool::destroy($id);
+        $data = Tool::find($id);
+        $data->active = 0;
+        $data->update();
+
         return to_route('tool.index')->with('success.message', 'Ferranenta excluída com sucesso!');
     }
 
