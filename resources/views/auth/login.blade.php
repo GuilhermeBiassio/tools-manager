@@ -1,10 +1,10 @@
 <x-main>
     <x-form action="{{ route('login') }}" title="Login" btnTitle="Entrar">
         <!-- Email Address -->
-        <x-input name="login" label="Usuário / E-mail" type="text" />
+        <x-input name="login" label="Usuário / E-mail" type="text" value="{{ old('login') }}" />
 
         <!-- Password -->
-        <x-input name="password" label="Senha" type="password" />
+        <x-input name="password" label="Senha" type="password" value="" />
 
         <!-- Remember Me -->
         <div class="block mt-4">

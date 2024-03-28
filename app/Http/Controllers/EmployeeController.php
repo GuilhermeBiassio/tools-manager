@@ -22,7 +22,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('admin.employee.create')->with('action', route('employee.store'));
+        return view('admin.employee.form')->with('action', route('employee.store'));
     }
 
     /**
@@ -52,7 +52,7 @@ class EmployeeController extends Controller
     public function edit(string $id)
     {
         $user = Employee::find($id);
-        return view('admin.employee.edit')->with([
+        return view('admin.employee.form')->with([
             'user' => $user,
             'action' => route('employee.update', $id)
         ]);

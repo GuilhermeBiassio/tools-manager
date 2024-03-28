@@ -23,7 +23,7 @@ class ProfileController extends Controller
     public function edit($id): View
     {
         $user = User::find($id);
-        return view('admin.profile.edit')->with([
+        return view('admin.profile.form')->with([
             'id' => $id,
             'title' => 'Update User',
             'user' => $user,
@@ -33,7 +33,7 @@ class ProfileController extends Controller
 
     public function create()
     {
-        return view('admin.profile.create')->with([
+        return view('admin.profile.form')->with([
             'title' => 'Register',
             'action' => route('register')
         ]);

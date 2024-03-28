@@ -1,22 +1,20 @@
 <?php
 
-namespace App\View\Components\Admin\Employee;
+namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Form extends Component
+class FormDelete extends Component
 {
     public $action;
-    public $user;
     /**
      * Create a new component instance.
      */
-    public function __construct($action, $user)
+    public function __construct($action)
     {
         $this->action = $action;
-        $this->user = $user;
     }
 
     /**
@@ -24,6 +22,6 @@ class Form extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.admin.employee.form');
+        return view('components.form-delete');
     }
 }

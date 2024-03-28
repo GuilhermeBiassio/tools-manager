@@ -23,7 +23,7 @@ class ToolController extends Controller
      */
     public function create()
     {
-        return view('admin.tool.create')->with('action', route('tool.store'));
+        return view('admin.tool.form')->with('action', route('tool.store'));
     }
 
     /**
@@ -53,7 +53,7 @@ class ToolController extends Controller
     public function edit(string $id)
     {
         $tool = Tool::find($id);
-        return view('admin.tool.edit')->with([
+        return view('admin.tool.form')->with([
             'tool' => $tool,
             'action' => route('tool.update', $id)
         ]);

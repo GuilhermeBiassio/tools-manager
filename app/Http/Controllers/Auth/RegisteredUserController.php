@@ -20,7 +20,7 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('admin.profile.create')->with([
+        return view('admin.profile.form')->with([
             'title' => 'Register',
             'action' => route('register')
         ]);
