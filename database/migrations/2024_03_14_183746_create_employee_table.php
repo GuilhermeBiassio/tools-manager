@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('employees', function (Blueprint $table) {
             $table->integer('id')->unsigned()->unique();
             $table->string('name');
-            $table->char('active', length: 1)->default(0);
+            $table->char('active', length: 1)->default(1);
             $table->timestamps();
         });
     }
