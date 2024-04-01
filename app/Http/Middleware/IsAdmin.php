@@ -17,7 +17,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::user() && (Auth::user()->is_admin == 1 || Auth::user()->is_admin == 2)) {
+        if (Auth::user() && (Auth::user()->is_admin == 1)) {
             return $next($request);
         }
         return Redirect::back()->with('error.message', 'Você não tem acesso de Administrador!');

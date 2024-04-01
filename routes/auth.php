@@ -31,17 +31,17 @@ Route::middleware('auth')->group(function () {
         Route::post('link/search', [LinkController::class, 'search'])->name('link.search');
         Route::resource('link', LinkController::class)->except(['edit', 'destroy']);
         //Admin middleware group
-        Route::middleware('is_admin')->group(function () {
-            Route::prefix('admin')->group(function () {
-                Route::middleware('super_admin')->group(function () {
-                    Route::put('employee/enable/{id}', [EmployeeController::class, 'enable'])->name('employee.enable');
-                    Route::resource('profile', ProfileController::class);
-                    Route::get('register', [RegisteredUserController::class, 'create'])
-                        ->name('register');
-                    Route::post('register', [RegisteredUserController::class, 'store']);
+        Route::prefix('admin')->group(function () {
+            Route::middleware('super_admin')->group(function () {
+                Route::put('employee/enable/{id}', [EmployeeController::class, 'enable'])->name('employee.enable');
+                Route::resource('profile', ProfileController::class);
+                Route::get('register', [RegisteredUserController::class, 'create'])
+                    ->name('register');
+                Route::post('register', [RegisteredUserController::class, 'store']);
+                Route::middleware('is_admin')->group(function () {
+                    Route::resource('employee', EmployeeController::class)->except(['show']);
+                    Route::resource('tool', ToolController::class)->except(['show']);
                 });
-                Route::resource('employee', EmployeeController::class)->except(['show']);
-                Route::resource('tool', ToolController::class)->except(['show']);
             });
         });
     });
