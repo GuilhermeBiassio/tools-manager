@@ -38,10 +38,10 @@ Route::middleware('auth')->group(function () {
                 Route::get('register', [RegisteredUserController::class, 'create'])
                     ->name('register');
                 Route::post('register', [RegisteredUserController::class, 'store']);
-                Route::middleware('is_admin')->group(function () {
-                    Route::resource('employee', EmployeeController::class)->except(['show']);
-                    Route::resource('tool', ToolController::class)->except(['show']);
-                });
+            });
+            Route::middleware('is_admin')->group(function () {
+                Route::resource('employee', EmployeeController::class)->except(['show']);
+                Route::resource('tool', ToolController::class)->except(['show']);
             });
         });
     });

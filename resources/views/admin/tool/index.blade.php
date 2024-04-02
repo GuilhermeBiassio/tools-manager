@@ -1,7 +1,9 @@
 <x-main>
     <div class="d-flex flex-row">
         <x-buttons.add-btn route="{{ route('tool.create') }}" name="Adicionar" />
-        <x-buttons.add-btn route="{{ route('tool.qr', 'all') }}" name="QR Code geral" target="_blank" />
+        @if (!$tools->isEmpty())
+            <x-buttons.add-btn route="{{ route('tool.qr', 'all') }}" name="QR Code geral" target="_blank" />
+        @endif
     </div>
     <div class="overflow-hidden mt-10 d-flex flex-column justify-content-center">
         @if (!$tools->isEmpty())

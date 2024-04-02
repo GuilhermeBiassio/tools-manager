@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('serial_number')->nullable();
             $table->char('in_use', length: 1)->default(0);
-            $table->char('active', length: 1)->default(0);
+            $table->char('active', length: 1)->default(1);
             $table->timestamps();
         });
     }

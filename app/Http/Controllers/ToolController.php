@@ -15,7 +15,7 @@ class ToolController extends Controller
     public function index()
     {
         $tools = Tool::where('active', '=', '1')
-        ->orderby('name', 'ASC')->get();
+            ->orderby('name', 'ASC')->get();
         return view('admin.tool.index')->with('tools', $tools);
     }
 
@@ -32,11 +32,18 @@ class ToolController extends Controller
      */
     public function store(ToolRequest $request)
     {
-        $data = [
-            'name' => mb_strtoupper($request->name),
-            'serial_number' => $request->serial_number
-        ];
-        Tool::create($data);
+        $empty = Tool::where('serial_number', '=', $request->serial_number);
+        if (!$empty->get()->isEmpty()) {
+            $empty->update([
+                'active' => 1
+            ]);
+        } else {
+            $data = [
+                'name' => mb_strtoupper($request->name),
+                'serial_number' => $request->serial_number
+            ];
+            Tool::create($data);
+        }
         return to_route('tool.index')->with('success.message', 'Dados cadastrados com sucesso!');
     }
 
@@ -101,7 +108,7 @@ class ToolController extends Controller
     {
         $codes = array();
         if ($id == 'all') {
-            $tools = Tool::all();
+            $tools = Tool::where('active', '=', 1)->get();
             foreach ($tools as $tool) {
                 $codes[] = $this->qrGenerator($tool->id, $tool->name, $tool->serial_number);
             }
