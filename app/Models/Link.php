@@ -12,6 +12,7 @@ class Link extends Model
     protected $fillable = [
         'id_tool',
         'id_employee',
-        'borrowed'
+        'borrowed',
+        'id_user'
     ];
 }

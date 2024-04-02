@@ -7,6 +7,7 @@ use App\Models\Tool;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Requests\LinkRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
 class LinkController extends Controller
@@ -45,7 +46,8 @@ class LinkController extends Controller
         $data = [
             'id_tool' => $request->tool,
             'id_employee' => $request->employee,
-            'borrowed' => date('Y-m-d H:i:s')
+            'borrowed' => date('Y-m-d H:i:s'),
+            'id_user' => Auth::user()->id
         ];
         Link::create($data);
         $update = Tool::find($request->tool);
@@ -88,6 +90,7 @@ class LinkController extends Controller
         $tool = Tool::find($link->id_tool);
         $tool->in_use = 0;
         $tool->update();
+        $link->id_user = Auth::user()->id;
         $link->returned = date('Y-m-d H:i:s');
         $link->update();
 

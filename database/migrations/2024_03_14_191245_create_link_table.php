@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->integer('id_tool');
             $table->integer('id_employee');
+            $table->integer('id_user');
             $table->datetime('borrowed')->nullable();
             $table->datetime('returned')->nullable();
         });
