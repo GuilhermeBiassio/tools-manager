@@ -62,7 +62,8 @@
                 });
 
                 function qrScan() {
-                    var tools = document.querySelector('#tools');
+                    var tools = document.querySelector('#tool');
+                    console.log(tools);
 
                     function onScanSucces(decodeText, decodeResult) {
                         for (var i = 0; i < tools.options.length; i++) {
