@@ -130,6 +130,16 @@ class LinkController extends Controller
 
     public function search(Request $request)
     {
+        $request->validate(
+            [
+                'start' => 'required',
+                'end' => 'required'
+            ],
+            [
+                'start.required' => 'A data inicial é obrigatória.',
+                'end.required' => 'A data final é obrigatória.'
+            ]
+        );
         $data = Link::where('borrowed', '>=', $request->start)
             ->where('borrowed', '<', date('Y-m-d', strtotime("+1 days", strtotime($request->end))))
             ->when(
